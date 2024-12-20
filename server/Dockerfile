@@ -23,6 +23,8 @@ COPY --from=builder /builder/node_modules ./node_modules
 COPY --from=builder /builder/dist ./dist
 COPY --from=builder /builder/prisma ./prisma
 
+ENV DATABASE_URL=postgresql://postgres:HorGoIlH79PxNz83@db.jxjjbdjpyyunwhzuishj.supabase.co:5432/database?schema=public&sslmode=require
+
 EXPOSE 3000
 
 CMD ["npm", "run", "start"]
