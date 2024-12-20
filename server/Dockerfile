@@ -7,7 +7,7 @@ COPY package*.json ./
 
 COPY ./prisma ./
 
-RUN npm ci
+RUN npm i
 
 COPY . .
 
