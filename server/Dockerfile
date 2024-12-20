@@ -1,35 +1,26 @@
-# Use the node base image for building
-FROM node:20.11.1-alpine AS builder
+FROM node:alpine AS builder
 
 WORKDIR /builder
 
 COPY package*.json ./
 
-COPY ./prisma ./
-
-RUN npm install
+RUN npm ci --omit=dev
 
 COPY . .
 
 RUN npm run build
 
-FROM node:20.11.1-alpine AS runner
+RUN npx prisma generate
+
+FROM node:alpine AS runner
 
 WORKDIR /runner
 
 COPY --from=builder /builder/package*.json ./
-
-RUN npm install --omit=dev
-
-COPY --from=builder /builder/dist ./dist
-
-COPY --from=builder /builder/prisma ./prisma/
-
 COPY --from=builder /builder/node_modules ./node_modules
-
-RUN npx prisma generate
+COPY --from=builder /builder/dist ./dist
+COPY --from=builder /builder/prisma ./prisma  # Ensure Prisma schema is copied
 
 EXPOSE 3000
 
 CMD ["npm", "run", "start"]
-

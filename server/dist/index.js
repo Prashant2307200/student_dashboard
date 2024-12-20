@@ -11,6 +11,7 @@ import { compressionConfig } from "./config/compression.config.js";
 import router from "./routers/index.router.js";
 import pathHandler from "./middlewares/pathHandler.middleware.js";
 import errorHandler from "./middlewares/errorHandler.middleware.js";
+import { prisma } from "./config/db.config.js";
 const { PORT: port, MAX_REQUEST_SIZE: maxRequestSize, NODE_ENV: nodeEnv } = process.env;
 const app = express();
 // Add content-type middleware before compression
@@ -55,7 +56,12 @@ if (nodeEnv === "production") {
     }
 }
 else {
-    app.listen(port, () => {
+    app.listen(port || 8080, () => {
         logger.info(`Server running on port ${port}`);
+    });
+    prisma.$connect().then(() => {
+        logger.info("Database connected");
+    }).catch((error) => {
+        logger.error("Error connecting to database: ", error);
     });
 }
