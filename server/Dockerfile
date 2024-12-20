@@ -8,7 +8,7 @@ RUN npm ci --omit=dev
 
 COPY . .
 
-RUN npm i -D typescript && npm run build
+RUN npm i typescript && npm run build
 
 RUN npx prisma generate
 
