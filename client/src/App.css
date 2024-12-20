@@ -1,0 +1,60 @@
+:root {
+  --primary-color: #FFFFFF;
+  --secondary-color: #F6F8FA;
+  --tertiary-color: #EEEEEE;
+} 
+
+body {
+  overflow: hidden;
+}
+
+main, #navbar {
+  background-color: var(--secondary-color);
+  overflow: hidden;
+}
+
+#sidebar, #student-list {
+  background-color: var(--primary-color);
+}
+
+#sidebar {
+  width: 300px;
+  height: 100vh;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
+#navbar {
+  position: sticky;
+  top: 0;
+  /* z-index: 999; */
+  height: 60px;
+}
+
+#student-list {
+  border-radius: 1rem 1rem 0 0;
+  max-height: 88vh;
+  overflow: auto;
+}
+
+#student-list::-webkit-scrollbar {
+  appearance: none;
+}
+
+/* apply :active when see effect on click */
+a:hover {
+  background-color: var(--tertiary-color);
+  & span {
+    filter: brightness(0);
+  }
+}
+
+#search-bar {
+  background-color: var(--primary-color);
+}
+
+.options select, button {
+  background-color: var(--tertiary-color);
+}
+
