@@ -79,7 +79,7 @@ if (nodeEnv === "production") {
     }
   } else {
     
-  app.listen(port, () => {
+  app.listen(port || 8080, () => {
     logger.info(`Server running on port ${port}`);
   });
 }
