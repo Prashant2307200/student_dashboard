@@ -50,8 +50,6 @@ app.set("trust proxy", 1);
 
 app.use(cookieConfig);  
 
-app.use(express.static(path.resolve(import.meta.dirname, "public")));
-
 app.use("/api/v1", router);
 
 app.use(pathHandler);

@@ -15,7 +15,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       "/api": {
-        target: "https://student-dashboard-u609.onrender.com",
+        target: "https://student-server-quhu.onrender.com",
         changeOrigin: true,
       },
     },
