@@ -16,6 +16,7 @@ import router from "./routers/index.router.js";
 import pathHandler from "./middlewares/pathHandler.middleware.js";
 import errorHandler from "./middlewares/errorHandler.middleware.js"; 
 import { prisma } from "./config/db.config.js";
+import path from "path";
 
 const {
   PORT: port,
@@ -25,7 +26,6 @@ const {
 
 const app = express();
 
-// Add content-type middleware before compression
 app.use(express.json({
   limit: maxRequestSize,
   verify: (req: any, res, buf) => {
@@ -38,7 +38,6 @@ app.use(express.urlencoded({
   limit: maxRequestSize,
 }));
 
-// Then apply compression
 app.use(compressionConfig);
 
 // secure backend
@@ -49,8 +48,9 @@ app.disable("x-powered-by");
 app.use(limiter);
 app.set("trust proxy", 1);
 
-// data parser 
 app.use(cookieConfig);  
+
+app.use(express.static(path.resolve(import.meta.dirname, "public")));
 
 app.use("/api/v1", router);
 
