@@ -14,7 +14,7 @@ FROM node:20.11.1-alpine AS runner
 WORKDIR /runner
 
 COPY --from=builder /builder/package*.json ./
-RUN npm install --omit=dev
+RUN npm ci
 COPY --from=builder /builder/dist ./dist
 COPY --from=builder /builder/prisma ./prisma/
 COPY --from=builder /builder/node_modules ./node_modules
