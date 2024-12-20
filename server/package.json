@@ -2,10 +2,14 @@
   "name": "server",
   "version": "1.0.0",
   "type": "module",
-  "main": "dist/index.js", 
+  "main": "dist/index.js",
+  "prisma": {
+    "schema": "./prisma/schema.prisma"
+  },
   "scripts": {
     "start": "node dist/index.js",
-    "dev": "tsc-watch --onSuccess \"node dist/index.js\"", 
+    "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
+    "postinstall": "prisma generate",
     "build": "npx tsc",
     "init_prisma": "npx prisma init",
     "prisma_migrate": "npx prisma migrate dev --name init",
