@@ -7,7 +7,7 @@ COPY package*.json ./
 
 COPY ./prisma ./
 
-RUN npm ci --legacy-peer-deps
+RUN npm ci
 
 COPY . .
 
