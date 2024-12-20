@@ -17,6 +17,7 @@ export default defineConfig({
       "/api": {
         target: "https://student-server-quhu.onrender.com",
         changeOrigin: true,
+        secure: false
       },
     },
   },
