@@ -19,7 +19,7 @@ WORKDIR /runner
 
 COPY --from=builder /builder/package*.json ./
 
-RUN npm ci --omit=dev
+RUN npm install --omit=dev
 
 COPY --from=builder /builder/dist ./dist
 
