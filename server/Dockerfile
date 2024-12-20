@@ -27,11 +27,11 @@ WORKDIR /runner
 
 # Copy production dependencies
 COPY --from=builder /builder/package*.json ./
+COPY --from=builder /builder/prisma ./prisma/
 RUN npm install --production
 
 # Copy the built application and Prisma client
 COPY --from=builder /builder/dist ./dist
-COPY --from=builder /builder/prisma ./prisma/
 
 # Expose the application port
 EXPOSE 3000
