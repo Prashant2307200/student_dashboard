@@ -43,7 +43,7 @@ app.use(compressionConfig);
 
 // secure backend
 app.use(helmetConfig);
-app.use(corsConfig);
+// app.use(corsConfig);
 app.disable("x-powered-by");
 
 app.use(limiter);
