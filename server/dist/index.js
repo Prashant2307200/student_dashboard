@@ -3,9 +3,6 @@ import os from 'os';
 import cluster from 'cluster';
 import express from "express";
 import logger from "./config/pino.config.js";
-import { helmetConfig } from "./config/helmet.config.js";
-import { corsConfig } from "./config/cors.config.js";
-import limiter from "./config/rateLimit.config.js";
 import { cookieConfig } from "./config/cookieParser.config.js";
 import { compressionConfig } from "./config/compression.config.js";
 import router from "./routers/index.router.js";
@@ -28,11 +25,11 @@ app.use(express.urlencoded({
 // Then apply compression
 app.use(compressionConfig);
 // secure backend
-app.use(helmetConfig);
-app.use(corsConfig);
-app.disable("x-powered-by");
-app.use(limiter);
-app.set("trust proxy", 1);
+// app.use(helmetConfig);
+// app.use(corsConfig);
+// app.disable("x-powered-by");
+// app.use(limiter);
+// app.set("trust proxy", 1);
 // data parser 
 app.use(cookieConfig);
 app.use("/api/v1", router);
