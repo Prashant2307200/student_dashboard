@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "tsc-watch --onSuccess \"node dist/index.js\"", 
-    "build": "tsc",
+    "build": "npx tsc",
     "init_prisma": "npx prisma init",
     "prisma_migrate": "npx prisma migrate dev --name init",
     "prisma_generate": "npx prisma generate"
