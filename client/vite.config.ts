@@ -15,7 +15,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       "/api": {
-        target: "https://student-dashboard-kmnb.onrender.com",
+        target: "https://student-dashboard-u609.onrender.com",
         changeOrigin: true,
       },
     },
