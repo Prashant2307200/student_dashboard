@@ -3,6 +3,7 @@ FROM node:alpine AS builder
 WORKDIR /builder
 
 COPY package*.json ./
+COPY prisma ./prisma/
 
 RUN npm ci
 
@@ -17,11 +18,9 @@ FROM node:alpine AS runner
 WORKDIR /runner
 
 COPY --from=builder /builder/package*.json ./
-
-RUN npm ci --omit=dev
-
+COPY --from=builder /builder/node_modules ./node_modules
 COPY --from=builder /builder/dist ./dist
-COPY --from=builder /builder/prisma ./prisma  # Ensure Prisma schema is copied
+COPY --from=builder /builder/prisma ./prisma
 
 EXPOSE 3000
 
