@@ -11,6 +11,7 @@ COPY . .
 
 RUN npm run build
 
+RUN npx prisma migrate deploy
 RUN npx prisma generate
 
 FROM node:alpine AS runner
